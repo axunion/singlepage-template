@@ -22,6 +22,10 @@ export class SelectComponent extends BaseElement {
   connectedCallback() {}
 
   attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
+    if (!this.#select) {
+      return;
+    }
+
     if (name === 'options') {
       try {
         this.options = JSON.parse(newValue);
@@ -29,7 +33,7 @@ export class SelectComponent extends BaseElement {
         console.error('Invalid JSON format for options attribute', e);
       }
     } else {
-      this.#select?.setAttribute(name, newValue);
+      this.#select.setAttribute(name, newValue);
     }
   }
 
