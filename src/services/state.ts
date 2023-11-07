@@ -18,7 +18,7 @@ export const createState = <T>({
 
     update: (updater: (state: T) => T): void => {
       if (isUpdating) {
-        throw new Error('Cannot update state while it is being updated.');
+        throw new Error("Cannot update state while it is being updated.");
       }
 
       isUpdating = true;

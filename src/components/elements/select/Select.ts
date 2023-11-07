@@ -1,5 +1,5 @@
-import { BaseElement } from '@/services';
-import template from './select.html?raw';
+import { BaseElement } from "@/services";
+import template from "./select.html?raw";
 
 interface OptionObject {
   value: string;
@@ -7,16 +7,16 @@ interface OptionObject {
 }
 
 export class SelectComponent extends BaseElement {
-  static componentName = 'select-component';
+  static componentName = "select-component";
   static get observedAttributes() {
-    return ['multiple', 'required', 'disabled', 'options'];
+    return ["multiple", "required", "disabled", "options"];
   }
 
   #select: HTMLSelectElement | null | undefined;
 
   constructor() {
     super(template);
-    this.#select = this.shadowRoot?.querySelector('select');
+    this.#select = this.shadowRoot?.querySelector("select");
   }
 
   connectedCallback() {}
@@ -26,11 +26,11 @@ export class SelectComponent extends BaseElement {
       return;
     }
 
-    if (name === 'options') {
+    if (name === "options") {
       try {
         this.options = JSON.parse(newValue);
       } catch (e) {
-        console.error('Invalid JSON format for options attribute', e);
+        console.error("Invalid JSON format for options attribute", e);
       }
     } else {
       this.#select.setAttribute(name, newValue);
@@ -41,10 +41,10 @@ export class SelectComponent extends BaseElement {
     const select = this.#select;
 
     if (select) {
-      select.innerHTML = '';
+      select.innerHTML = "";
 
       optionList.forEach((item) => {
-        const option = document.createElement('option');
+        const option = document.createElement("option");
         option.textContent = item.text;
         option.value = item.value;
         select.appendChild(option);
@@ -53,6 +53,6 @@ export class SelectComponent extends BaseElement {
   }
 
   get value(): string {
-    return this.#select?.value || '';
+    return this.#select?.value || "";
   }
 }

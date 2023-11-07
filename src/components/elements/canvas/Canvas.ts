@@ -1,10 +1,10 @@
-import { BaseElement } from '@/services';
-import template from './canvas.html?raw';
+import { BaseElement } from "@/services";
+import template from "./canvas.html?raw";
 
 export class CanvasComponent extends BaseElement {
-  static componentName = 'canvas-component';
+  static componentName = "canvas-component";
   static get observedAttributes() {
-    return ['width', 'height'];
+    return ["width", "height"];
   }
 
   #canvas: HTMLCanvasElement | null | undefined;
@@ -12,7 +12,7 @@ export class CanvasComponent extends BaseElement {
 
   constructor() {
     super(template);
-    this.#canvas = this.shadowRoot?.querySelector('canvas');
+    this.#canvas = this.shadowRoot?.querySelector("canvas");
   }
 
   connectedCallback() {
@@ -24,7 +24,7 @@ export class CanvasComponent extends BaseElement {
 
           this.#setCanvasSize(width, height);
           this.dispatchEvent(
-            new CustomEvent('canvas-resize', {
+            new CustomEvent("canvas-resize", {
               detail: { width, height },
             }),
           );
@@ -65,7 +65,7 @@ export class CanvasComponent extends BaseElement {
 
   #notifyConnected() {
     this.dispatchEvent(
-      new CustomEvent('initialized', {
+      new CustomEvent("initialized", {
         bubbles: true,
         composed: true,
       }),

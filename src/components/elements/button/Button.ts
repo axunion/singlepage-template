@@ -1,23 +1,23 @@
-import { BaseElement } from '@/services';
-import template from './button.html?raw';
+import { BaseElement } from "@/services";
+import template from "./button.html?raw";
 
-const booleanAttributes = ['autofocus', 'disabled'];
+const booleanAttributes = ["autofocus", "disabled"];
 
 export class ButtonComponent extends BaseElement {
-  static componentName = 'button-component';
+  static componentName = "button-component";
   static get observedAttributes() {
-    return ['disabled', 'value'];
+    return ["disabled", "value"];
   }
 
   #button: HTMLButtonElement | null | undefined;
 
   constructor() {
     super(template);
-    this.#button = this.shadowRoot?.querySelector('button');
+    this.#button = this.shadowRoot?.querySelector("button");
   }
 
   connectedCallback() {
-    if (this.hasAttribute('autofocus')) {
+    if (this.hasAttribute("autofocus")) {
       this.#button?.focus();
     }
   }
@@ -33,7 +33,7 @@ export class ButtonComponent extends BaseElement {
 
     if (booleanAttributes.includes(name)) {
       if (newValue !== null) {
-        this.#button.setAttribute(name, '');
+        this.#button.setAttribute(name, "");
       } else if (oldValue !== null) {
         this.#button.removeAttribute(name);
       }

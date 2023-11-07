@@ -1,1 +1,1 @@
-export { dialogState } from './dialogState';
+export { dialogState } from "./dialogState";

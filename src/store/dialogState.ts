@@ -1,8 +1,8 @@
-import { createState } from '@/services/state';
+import { createState } from "@/services/state";
 
 interface DialogState {
   isOpen: boolean;
-  type: 'alert' | 'confirm' | 'error';
+  type: "alert" | "confirm" | "error";
   title: string;
   message: string;
 }
@@ -10,8 +10,8 @@ interface DialogState {
 export const dialogState = createState<DialogState>({
   data: {
     isOpen: false,
-    type: 'alert',
-    title: '',
-    message: '',
+    type: "alert",
+    title: "",
+    message: "",
   },
 });

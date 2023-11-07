@@ -1,23 +1,23 @@
-import { BaseElement } from '@/services';
-import template from './input-file.html?raw';
+import { BaseElement } from "@/services";
+import template from "./input-file.html?raw";
 
-const booleanAttributes = ['disabled', 'multiple', 'required'];
+const booleanAttributes = ["disabled", "multiple", "required"];
 
 export class InputFileComponent extends BaseElement {
-  static componentName = 'input-file-component';
+  static componentName = "input-file-component";
   static get observedAttributes() {
-    return ['accept', 'disabled', 'multiple', 'name', 'required'];
+    return ["accept", "disabled", "multiple", "name", "required"];
   }
 
   #input: HTMLInputElement | null | undefined;
   #label: HTMLLabelElement | null | undefined;
-  #DRAG_OVER_CLASS_NAME = 'dragover';
+  #DRAG_OVER_CLASS_NAME = "dragover";
 
   constructor() {
     super(template);
 
-    this.#input = this.shadowRoot?.querySelector('input');
-    this.#label = this.shadowRoot?.querySelector('label');
+    this.#input = this.shadowRoot?.querySelector("input");
+    this.#label = this.shadowRoot?.querySelector("label");
   }
 
   connectedCallback() {
@@ -25,24 +25,24 @@ export class InputFileComponent extends BaseElement {
     const label = this.#label;
 
     if (input && label) {
-      input.addEventListener('change', this.#inputChange);
-      label.addEventListener('dragenter', this.#dragenter);
-      label.addEventListener('dragleave', this.#dragleave);
-      label.addEventListener('dragover', this.#dragover);
-      label.addEventListener('drop', this.#drop);
+      input.addEventListener("change", this.#inputChange);
+      label.addEventListener("dragenter", this.#dragenter);
+      label.addEventListener("dragleave", this.#dragleave);
+      label.addEventListener("dragover", this.#dragover);
+      label.addEventListener("drop", this.#drop);
     }
   }
 
   disconnectedCallback() {
     if (this.#input) {
-      this.#input.removeEventListener('change', this.#inputChange);
+      this.#input.removeEventListener("change", this.#inputChange);
     }
 
     if (this.#label) {
-      this.#label.removeEventListener('dragenter', this.#dragenter);
-      this.#label.removeEventListener('dragleave', this.#dragleave);
-      this.#label.removeEventListener('dragover', this.#dragover);
-      this.#label.removeEventListener('drop', this.#drop);
+      this.#label.removeEventListener("dragenter", this.#dragenter);
+      this.#label.removeEventListener("dragleave", this.#dragleave);
+      this.#label.removeEventListener("dragover", this.#dragover);
+      this.#label.removeEventListener("drop", this.#drop);
     }
   }
 
@@ -57,7 +57,7 @@ export class InputFileComponent extends BaseElement {
 
     if (booleanAttributes.includes(name)) {
       if (newValue !== null) {
-        this.#input.setAttribute(name, '');
+        this.#input.setAttribute(name, "");
       } else if (oldValue !== null) {
         this.#input.removeAttribute(name);
       }
@@ -73,7 +73,7 @@ export class InputFileComponent extends BaseElement {
   #inputChange(event: Event): void {
     if (event.isTrusted) {
       this.dispatchEvent(
-        new Event('change', { bubbles: true, composed: true }),
+        new Event("change", { bubbles: true, composed: true }),
       );
     }
   }
@@ -100,7 +100,7 @@ export class InputFileComponent extends BaseElement {
       if (event.dataTransfer?.files) {
         this.#input.files = event.dataTransfer.files;
         this.#input.dispatchEvent(
-          new Event('change', { bubbles: true, composed: true }),
+          new Event("change", { bubbles: true, composed: true }),
         );
       }
     }

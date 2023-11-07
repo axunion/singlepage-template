@@ -1,3 +1,2 @@
-export { BaseElement } from './BaseElement';
-export { icons } from './icons';
-export { createState } from './state';
+export { BaseElement } from "./BaseElement";
+export { createState } from "./state";

@@ -1,6 +1,6 @@
-import './style.css';
-import * as elements from '@/components/elements';
-import * as layouts from '@/components/layouts';
+import "./style.css";
+import * as elements from "@/components/elements";
+import * as layouts from "@/components/layouts";
 
 interface CustomElement extends CustomElementConstructor {
   componentName: string;

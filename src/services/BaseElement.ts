@@ -3,15 +3,15 @@ export abstract class BaseElement extends HTMLElement {
     super();
 
     const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlTemplate, 'text/html');
-    const el = doc.querySelector('template');
+    const doc = parser.parseFromString(htmlTemplate, "text/html");
+    const el = doc.querySelector("template");
     const content = el?.content;
 
     if (content) {
-      const target = useShadowDOM ? this.attachShadow({ mode: 'open' }) : this;
+      const target = useShadowDOM ? this.attachShadow({ mode: "open" }) : this;
       target.appendChild(content.cloneNode(true));
     } else {
-      console.error('Template element not found or content is null');
+      console.error("Template element not found or content is null");
     }
   }
 }
